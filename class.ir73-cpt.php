@@ -100,6 +100,7 @@ Class IR73_CPT
             'menu_position'         => $this->arguments['menu_position'] ?? null,
             'show_in_nav_menus'     => $this->arguments['show_in_nav_menus'] ?? true,
             'show_in_admin_bar'     => $this->arguments['show_in_admin_bar'] ?? true,
+            'show_in_rest'          => $this->arguments['show_in_rest'] ?? false,
         ];
 
         $default_args['supports'] = $this->supports;
@@ -169,4 +170,3 @@ Class IR73_CPT
 }
 
 // Don’t cry because it’s over, smile because it happened.
- 

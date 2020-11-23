@@ -91,6 +91,8 @@ class IR73_Taxonomies
             'show_ui'           => $this->arguments['show_ui'] ?? true,
             'show_admin_column' => $this->arguments['show_admin_column'] ?? true,
             'query_var'         => $this->arguments['query_var'] ?? true,
+            'show_in_rest'      => $this->arguments['show_in_rest'] ?? true, // To show in gutenberg
+            'show_in_menu'      => true
         ];
 
         if (!is_null($this->rewrite_slug)) {
@@ -159,4 +161,3 @@ class IR73_Taxonomies
 }
 
 // Don’t cry because it’s over, smile because it happened.
- 

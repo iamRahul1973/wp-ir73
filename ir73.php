@@ -24,11 +24,13 @@ define('IR73_TEXT_DOMAIN', 'ir73');
 
 require_once IR73_PLUGIN_DIR . 'class.ir73.php';
 require_once IR73_PLUGIN_DIR . 'class.ir73-helper.php';
+require_once IR73_PLUGIN_DIR . 'class.ir73-assets.php';
 require_once IR73_PLUGIN_DIR . 'class.ir73-customizer.php';
 require_once IR73_PLUGIN_DIR . 'class.ir73-cpt.php';
 require_once IR73_PLUGIN_DIR . 'class.ir73-taxonomies.php';
 require_once IR73_PLUGIN_DIR . 'class.ir73-metafields.php';
-require_once IR73_PLUGIN_DIR . 'class.ir73-repeater.php';
+require_once IR73_PLUGIN_DIR . 'class.ir73-repeater-fields.php';
+require_once IR73_PLUGIN_DIR . 'class.ir73-setup-repeaters.php';
 
 // require customization files from the theme directory
 
