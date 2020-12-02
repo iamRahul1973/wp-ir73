@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+#course_meta input[type="text"],
+#testimonial_meta input[type="text"],
+.postbox input[type="text"], .postbox input[type="date"], .postbox input[type="url"], .postbox textarea {
+    width: 100%;
+}
+
+.custom-form-group input[type=text] {
+    width: 100%;
+}
+
+.custom-form-group label {
+    display: block;
+    padding-bottom: 0.6em;
+    font-weight: 500;
+}
+
+.custom-form-group label em {
+    font-weight: normal;
+}
+
+.meta-wrapper {
+    padding: 3em 2em;
+    width: 95%;
+    margin: auto;
+    background: #eee;
+    border-radius: 10px;
+}
+
+.pt-1 {
+    padding-top: 1rem;
+}
+
+.p-tb-1 {
+    padding: 1em 0;
+}
+
+.text-danger {
+    color: #f44336;
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.wp-core-ui .button-orange {
+    color: #f1e5e5;
+    border-color: #d03f11;
+    background: #FF5722;
+    box-shadow: 0 1px 0 #ccc;
+    vertical-align: top;
+}
+
+.wp-core-ui .button-orange:hover {
+    background: #f4511e;
+    border-color: #a73511;
+    color: #e9edf1;
+}
+
+.wp-core-ui .button-orange[disabled] {
+    color: #efefef!important;
+    border-color: #FF8A65!important;
+    background: #FFAB91!important;
+    text-shadow: none!important;
+}
+
+/* Don’t cry because it’s over, smile because it happened. */
