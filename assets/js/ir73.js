@@ -101,6 +101,13 @@ jQuery(function ($) {
         $(this).parent('p').parent('div').remove();
     });
 
+    /* --------------------------------------------------
+       | JQUERY SORTABLE
+       -------------------------------------------------- */
+
+    $('[data-action="sortable"]').sortable();
+    $('[data-action="sortable"]').disableSelection();
+
 });
 
 // Don’t cry because it’s over, smile because it happened.

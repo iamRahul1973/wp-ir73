@@ -111,22 +111,31 @@ if ( ! class_exists( 'IR73_Assets' ) ) {
         public function load_admin_assets()
         {
             // Bootstrap Grid
-            wp_register_style('bootstrap-grid', IR73_Helper::get_plugin_assets_url('css/bootstrap-grid.min.css'), [], '4.1.3');
-            wp_enqueue_style('bootstrap-grid');
+            wp_register_style( 'bootstrap-grid', IR73_Helper::get_plugin_assets_url( 'css/bootstrap-grid.min.css' ), array(), '4.1.3' );
+            wp_enqueue_style( 'bootstrap-grid' );
 
             // Custom Admin CSS
-            wp_register_style( 'custom-admin-css', IR73_Helper::get_plugin_assets_url('css/ir73.css'), [], '1.0' );
+            wp_register_style( 'custom-admin-css', IR73_Helper::get_plugin_assets_url( 'css/ir73.css' ), array(), '1.0' );
             wp_enqueue_style( 'custom-admin-css' );
 
+            // jQuery UI
+            wp_register_style( 'jquery-ui', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), '1.12.1' );
+            wp_enqueue_style( 'jquery-ui' );
+
             // Mustache JS
-            wp_register_script( 'mustache-js', IR73_Helper::get_plugin_assets_url('js/mustache.min.js'), [], '3.1.0', true );
+            wp_register_script( 'mustache-js', IR73_Helper::get_plugin_assets_url( 'js/mustache.min.js' ), array(), '3.1.0', true );
             wp_enqueue_script( 'mustache-js' );
 
             // Bootstrap JS
-            wp_register_script('bootstrap-js', IR73_Helper::get_plugin_assets_url('js/bootstrap.js'), [], '4.4.1', true);
-            wp_enqueue_script('bootstrap-js');
+            wp_register_script( 'bootstrap-js', IR73_Helper::get_plugin_assets_url( 'js/bootstrap.js' ), array(), '4.4.1', true );
+            wp_enqueue_script( 'bootstrap-js' );
 
-            wp_register_script( 'custom-admin-script', IR73_Helper::get_plugin_assets_url('js/ir73.js'), [], '1.0', true );
+            // jQuery UI
+            wp_register_script( 'jquery-ui', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array( 'jquery' ), '1.12.1', true );
+            wp_enqueue_script( 'jquery-ui' );
+
+            // Custom Admin Scripts
+            wp_register_script( 'custom-admin-script', IR73_Helper::get_plugin_assets_url( 'js/ir73.js' ), array(), '1.0', true );
             wp_enqueue_script( 'custom-admin-script' );
         }
 

@@ -25,6 +25,7 @@ class IR73
         $this->check_n_activate_cpt();
         $this->check_n_activate_taxonomies();
         $this->check_n_activate_repeater_fields();
+        $this->check_n_make_sortable();
     }
 
     private function enqueue_assets()
@@ -68,6 +69,23 @@ class IR73
         }
     }
 
+    private function check_n_make_sortable()
+    {
+        if ( $this->config->has_sortable_objects == true ) {
+
+            $sortable = new SortableObjects( $this->config->sortable_objects() );
+
+            add_action( 'admin_menu', array( $sortable, 'create_sortable_pages' ) );
+
+            // Save Order after re-arrangement
+            add_action( 'admin_post_nopriv_ir73_reorder_tax', array( $sortable, 're_order_taxonomies' ) );
+            add_action( 'admin_post_ir73_reorder_tax', array( $sortable, 're_order_taxonomies' ) );
+
+            // $save_order = new SortableSaveOrder( $this->config->sortable_objects() );
+            // $save_order->add_order_on_save();
+
+        }
+    }
 
 }
 

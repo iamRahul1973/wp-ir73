@@ -32,6 +32,8 @@ require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-taxonomies.php';
 require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-metafields.php';
 require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-repeater-fields.php';
 require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-setup-repeaters.php';
+require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-sortable-objects.php';
+require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-sortable-save-order.php';
 
 // require customization files from the theme directory
 
