@@ -225,18 +225,21 @@ class IR73_RepeaterFields extends IR73
     {
         // Validate (WILL DO LATER. NOT TODAY)
 
-        if ( $this->restrict_to !== null ) {
+        if ($this->restrict_to !== null) {
 
             $post_id = $_GET['post'] ?? '';
 
-            if ( empty( $post_id ) ) {
-                return;
-            } elseif ( is_array( $this->restrict_to ) && ! in_array( $post_id, $this->restrict_to ) ) {
-                return;
-            } elseif ( $post_id != $this->restrict_to ) {
+            if (empty($post_id)) {
                 return;
             }
 
+            if (is_array($this->restrict_to)) {
+                if (!in_array($post_id, $this->restrict_to)) {
+                    return;
+                }
+            } elseif ($post_id != $this->restrict_to) {
+                return;
+            }
         }
 
         // Add Meta Box
@@ -248,8 +251,15 @@ class IR73_RepeaterFields extends IR73
 
     public function save_fields()
     {
-        if ( !empty( $this->save_params['restricted_to'] ) && $this->save_params['restricted_to'] != $_POST['post_ID'] ) {
-            return;
+        if ( ! empty( $this->save_params['restricted_to'] ) ) {
+            // Clean this bitch a bit!
+            if ( is_array( $this->save_params['restricted_to'] ) ) {
+                if ( ! in_array( $_POST['post_ID'], $this->save_params['restricted_to'] ) ) {
+                    return;
+                }
+            } elseif ( $this->save_params['restricted_to'] != $_POST['post_ID'] ) {
+                return;
+            }
         }
 
         $nonce_key = $this->save_params['name'] . '-meta-nonce';
@@ -335,7 +345,7 @@ class IR73_RepeaterFields extends IR73
 
         $this->save_params = $repeater_field;
 
-        if ( $_POST['post_type'] == $this->save_params['post_type'] ) {
+        if ( !empty( $_POST['post_type'] ) && $_POST['post_type'] == $this->save_params['post_type'] ) {
             return $this->save_fields();
         }
     }

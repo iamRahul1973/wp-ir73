@@ -38,7 +38,8 @@ require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-sortable-save-order.php';
 // require customization files from the theme directory
 
 if (!file_exists(get_theme_file_path('class.ir73-config.php'))) {
-    return IR73_Helper::error_flash('IR73', 'No Customizations found for your theme !');
+    // return IR73_Helper::error_flash('IR73', 'No Customizations found for your theme !');
+    return false;
 }
 
 require_once get_theme_file_path('class.ir73-config.php');

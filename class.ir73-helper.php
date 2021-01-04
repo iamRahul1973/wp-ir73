@@ -111,6 +111,62 @@ Class IR73_Helper
 
         return $prepared;
     }
+
+    static function error_flash( string $text_domain, string $message )
+    {
+        echo _e( $message, $text_domain );
+    }
+
+    static function generate_unique_username( string $username )
+    {
+        $username = sanitize_title( $username );
+
+        static $i;
+        if ( null === $i ) {
+            $i = 1;
+        } else {
+            $i++;
+        }
+
+        if ( ! username_exists( $username ) ) {
+            return $username;
+        }
+
+        $new_username = sprintf( '%s-%s', $username, $i );
+
+        if ( ! username_exists( $new_username ) ) {
+            return $new_username;
+        } else {
+            return call_user_func( __FUNCTION__, $username );
+        }
+    }
+
+    static function site_url_without_protocols()
+    {
+        $protocols = array( 'https://', 'https://www.', 'www.' );
+        return str_replace( $protocols, '', get_bloginfo( 'wpurl' ) );
+    }
+
+    static function pretty_dump( ...$objects )
+    {
+        foreach ( $objects as $key => $object ) {
+            echo "<pre>", var_dump( $object ), "</pre>";
+        }
+    }
+
+    /**
+     * Get Custom Created Meta Box Values - Mainly Repeters
+     *
+     * @param integer $post_ID
+     * @param string $key
+     * @param boolean $single
+     * @return array
+     */
+    static function get_meta( int $post_ID, string $key, bool $single = true )
+    {
+        return unserialize( get_post_meta( $post_ID, $key, $single ) );
+    }
+
 }
 
 // Don’t cry because it’s over, smile because it happened.
