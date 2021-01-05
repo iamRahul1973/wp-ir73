@@ -112,7 +112,10 @@ Class IR73_CPT
         $map_args = array_map('json_encode', $this->arguments);
         $map_new_args = array_map('json_encode', $default_args);
         $array_diff = array_diff_assoc($map_args, $map_new_args);
-        $array_diff = array_map('json_decode', $array_diff);
+
+        $array_diff = array_map(function($value) {
+            return json_decode($value, true);
+        }, $array_diff);
 
         if (!empty($array_diff)) {
             $default_args = array_merge($default_args, $array_diff);
