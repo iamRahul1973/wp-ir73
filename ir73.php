@@ -5,6 +5,8 @@
  * Author URL : https://iamrahul1973.github.io/
  * Date: 17-Aug-19
  * Time: 1:03 PM
+ *
+ * @package IR73
  */
 
 /*
@@ -18,10 +20,10 @@ License: GPLv2 or later
 Text Domain: ir73
 */
 
-define('IR73_VERSION', '1.1.0');
-define('IR73_PLUGIN_DIR', plugin_dir_url(__FILE__));
-define('IR73_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
-define('IR73_TEXT_DOMAIN', 'ir73');
+define( 'IR73_VERSION', '1.1.0' );
+define( 'IR73_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
+define( 'IR73_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
+define( 'IR73_TEXT_DOMAIN', 'ir73' );
 
 require_once IR73_PLUGIN_DIR_PATH . 'class.ir73.php';
 require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-helper.php';
@@ -35,14 +37,14 @@ require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-setup-repeaters.php';
 require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-sortable-objects.php';
 require_once IR73_PLUGIN_DIR_PATH . 'class.ir73-sortable-save-order.php';
 
-// require customization files from the theme directory
+// require customization files from the theme directory.
 
-if (!file_exists(get_theme_file_path('class.ir73-config.php'))) {
-    // return IR73_Helper::error_flash('IR73', 'No Customizations found for your theme !');
-    return false;
+if ( ! file_exists( get_theme_file_path( 'class-ir73-config.php' ) ) ) {
+	// return IR73_Helper::error_flash('IR73', 'No Customizations found for your theme !');
+	return false;
 }
 
-require_once get_theme_file_path('class.ir73-config.php');
+require_once get_theme_file_path( 'class-ir73-config.php' );
 
 new IR73();
 

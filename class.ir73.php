@@ -7,85 +7,82 @@
  * Time: 7:30 PM
  */
 
-class IR73
-{
-    /**
-     * @var IR73_Config
-     */
-    protected $config;
+class IR73 {
 
-    /**
-     * IR73 constructor.
-     */
-    public function __construct()
-    {
-        $this->config = new IR73_Config();
-        $this->enqueue_assets();
-        $this->check_n_enable_customizer();
-        $this->check_n_activate_cpt();
-        $this->check_n_activate_taxonomies();
-        $this->check_n_activate_repeater_fields();
-        $this->check_n_make_sortable();
-    }
+	/**
+	 * @var IR73_Config
+	 */
+	protected $config;
 
-    private function enqueue_assets()
-    {
-        $this->config->assets();
-    }
+	/**
+	 * IR73 constructor.
+	 */
+	public function __construct() {
+		$this->config = new IR73_Config();
+		$this->enqueue_assets();
+		$this->check_n_enable_customizer();
+		$this->check_n_activate_cpt();
+		$this->check_n_activate_taxonomies();
+		$this->check_n_activate_repeater_fields();
+		$this->check_n_make_sortable();
+	}
 
-    /**
-     * Enable and configure customizer options
-     */
-    private function check_n_enable_customizer()
-    {
-        if ( $this->config->has_customizer == true ) {
-            add_action( 'customize_register', array( $this->config, 'customizer_options' ) );
-        }
-    }
+	private function enqueue_assets() {
+		$this->config->assets();
+	}
 
-    private function check_n_activate_cpt()
-    {
-        if ( $this->config->has_custom_post_types == true ) {
-            add_action( 'init', array( $this->config, 'custom_post_types' ) );
-        }
-    }
+	/**
+	 * Enable and configure customizer options
+	 */
+	private function check_n_enable_customizer() {
+		if ( $this->config->has_customizer == true ) {
+			add_action( 'customize_register', array( $this->config, 'customizer_options' ) );
+		}
+	}
 
-    private function check_n_activate_taxonomies()
-    {
-        if ( $this->config->has_custom_tax == true ) {
-            add_action( 'init', array( $this->config, 'custom_taxonomies' ) );
-        }
-    }
+	private function check_n_activate_cpt() {
+		if ( $this->config->has_custom_post_types == true ) {
+			add_action( 'init', array( $this->config, 'custom_post_types' ) );
+		}
+	}
 
-    private function check_n_activate_repeater_fields()
-    {
-        if ( $this->config->has_repeater_fields == true ) {
+	private function check_n_activate_taxonomies() {
+		if ( $this->config->has_custom_tax == true ) {
+			add_action( 'init', array( $this->config, 'custom_taxonomies' ) );
+		}
+	}
 
-            $setup = new SetupRepeaters( $this->config->repeater_fields() );
+	private function check_n_activate_repeater_fields() {
+		if ( $this->config->has_repeater_fields == true ) {
 
-            add_action( 'init', array( $setup, 'make_repeater_showable' ) );
-            add_action( 'save_post', array( $setup, 'make_repeater_saveable' ) );
-            
-        }
-    }
+			$setup = new SetupRepeaters( $this->config->repeater_fields() );
 
-    private function check_n_make_sortable()
-    {
-        if ( $this->config->has_sortable_objects == true ) {
+			add_action( 'init', array( $setup, 'make_repeater_showable' ) );
+			add_action( 'save_post', array( $setup, 'make_repeater_saveable' ) );
 
-            $sortable = new SortableObjects( $this->config->sortable_objects() );
+		}
+	}
 
-            add_action( 'admin_menu', array( $sortable, 'create_sortable_pages' ) );
+	private function check_n_make_sortable() {
+		if ( $this->config->has_sortable_objects == true ) {
 
-            // Save Order after re-arrangement
-            add_action( 'admin_post_nopriv_ir73_reorder_tax', array( $sortable, 're_order_taxonomies' ) );
-            add_action( 'admin_post_ir73_reorder_tax', array( $sortable, 're_order_taxonomies' ) );
+			$sortable = new SortableObjects( $this->config->sortable_objects() );
 
-            // $save_order = new SortableSaveOrder( $this->config->sortable_objects() );
-            // $save_order->add_order_on_save();
+			add_action( 'admin_menu', array( $sortable, 'create_sortable_pages' ) );
 
-        }
-    }
+			// Save Taxonomy Order after re-arrangement.
+			add_action( 'admin_post_nopriv_ir73_reorder_tax', array( $sortable, 're_order_taxonomies' ) );
+			add_action( 'admin_post_ir73_reorder_tax', array( $sortable, 're_order_taxonomies' ) );
+
+			// Save CPT Order after re-arrangement.
+			add_action( 'admin_post_nopriv_ir73_reorder_cpt', array( $sortable, 're_order_posts' ) );
+			add_action( 'admin_post_ir73_reorder_cpt', array( $sortable, 're_order_posts' ) );
+
+			// $save_order = new SortableSaveOrder( $this->config->sortable_objects() );
+			// $save_order->add_order_on_save();
+
+		}
+	}
 
 }
 
