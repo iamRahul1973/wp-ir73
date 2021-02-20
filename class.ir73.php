@@ -25,6 +25,7 @@ class IR73 {
 		$this->check_n_activate_taxonomies();
 		$this->check_n_activate_repeater_fields();
 		$this->check_n_make_sortable();
+		$this->other_customizations();
 	}
 
 	private function enqueue_assets() {
@@ -82,6 +83,56 @@ class IR73 {
 			// $save_order->add_order_on_save();
 
 		}
+	}
+
+	/**
+	 * Custom CF7 Admin Area Styling. I didn't like the default one.
+	 *
+	 * @return void
+	 */
+	public function add_custom_cf7_styles() {
+
+		if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) :
+			?>
+			<style type="text/css">
+
+				#wpcf7-admin-form-element #contact-form-editor, 
+				#wpcf7-admin-form-element #contact-form-editor textarea#wpcf7-form, 
+				#wpcf7-admin-form-element #contact-form-editor .form-table input, 
+				#wpcf7-admin-form-element #contact-form-editor .form-table textarea, 
+				#wpcf7-admin-form-element #contact-form-editor #messages-panel input, 
+				#wpcf7-admin-form-element #contact-form-editor textarea#wpcf7-additional-settings {
+					font-family: Tahoma !important;
+				}
+
+				#wpcf7-admin-form-element #contact-form-editor textarea#wpcf7-form, 
+				#wpcf7-admin-form-element #contact-form-editor textarea#wpcf7-additional-settings {
+					font-size: 16px;
+					line-height: 28px;
+				}
+
+				/* Flamingo */
+
+				#inboundfieldsdiv, #inboundmetadiv {
+					font-family: Tahoma;
+				}
+
+			</style>
+			<?php
+		endif;
+
+	}
+
+	/**
+	 * Define other customizations here.
+	 *
+	 * @return void
+	 */
+	private function other_customizations() {
+
+		// Custom CF7 CSS.
+		add_action( 'admin_head', array( $this, 'add_custom_cf7_styles' ) );
+
 	}
 
 }

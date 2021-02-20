@@ -150,15 +150,29 @@ class IR73_Helper {
 	}
 
 	/**
-	 * Get Custom Created Meta Box Values - Mainly Repeters
+	 * Get Custom Created Meta Box Values - Mainly Repeters.
 	 *
-	 * @param integer $post_ID
-	 * @param string  $key
-	 * @param boolean $single
+	 * NOTICE : Keeping this only for backword compatibility.
+	 * Remove this function from the next version.
+	 *
+	 * @param integer $post_ID Post Id.
+	 * @param string  $key Meta Key.
+	 * @param boolean $single If it is a single value or not.
 	 * @return array
 	 */
 	public static function get_meta( int $post_ID, string $key, bool $single = true ) {
-		return unserialize( get_post_meta( $post_ID, $key, $single ) );
+		return maybe_unserialize( get_post_meta( $post_ID, $key, $single ) );
+	}
+
+	/**
+	 * Get custom logo's url
+	 *
+	 * @return string
+	 */
+	public static function get_custom_logo_url() {
+		$logo_id = get_theme_mod( 'custom_logo' );
+		$image   = wp_get_attachment_image_url( $logo_id, 'full' );
+		return $image;
 	}
 
 }
