@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.custom-form-group {
+	margin-bottom: 15px;
+}
+
 .custom-form-group input[type=text] {
     width: 100%;
 }

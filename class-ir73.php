@@ -7,7 +7,6 @@
  * Time: 7:30 PM
  *
  * @package Smellycat
- * @subpackage IR73 Repeater Fields
  * @author iamRahul1973 rahulkr1973@gmail.com
  */
 
@@ -99,7 +98,7 @@ class IR73 {
 	 */
 	private function check_n_make_sortable() {
 		if ( true === $this->config->has_sortable_objects ) {
-			$sortable = new SortableObjects( $this->config->sortable_objects() );
+			$sortable = new IR73_Sortable_Objects( $this->config->sortable_objects() );
 			add_action( 'admin_menu', array( $sortable, 'create_sortable_pages' ) );
 			// Save Taxonomy Order after re-arrangement.
 			add_action( 'admin_post_nopriv_ir73_reorder_tax', array( $sortable, 're_order_taxonomies' ) );

@@ -39,12 +39,14 @@ class IR73_Setup_Repeaters {
 	 */
 	public function make_repeater_showable() {
 		foreach ( $this->repeaters as $value ) {
-			$repeater = new IR73_Repeater_Fields( $value['ID'] );
-			$repeater->set_title( $value['title'] );
-			$repeater->set_object( $value['object'] );
-			$repeater->restrict( $value['restrict_to'] );
-			$repeater->assign_fields( $value['fields'] );
-			$repeater->do();
+
+			( new IR73_Repeater_Fields( $value['ID'] ) )
+				->set_title( $value['title'] )
+				->set_object( $value['object'] )
+				->restrict( $value['restrict_to'] )
+				->assign_fields( $value['fields'] )
+				->do();
+
 		}
 	}
 
@@ -55,7 +57,6 @@ class IR73_Setup_Repeaters {
 	 */
 	public function make_repeater_saveable() {
 		foreach ( $this->repeaters as $value ) {
-			$repeater     = new IR73_Repeater_Fields( $value['ID'] );
 			$fields_names = array();
 			foreach ( $value['fields'] as $field ) {
 				array_push( $fields_names, $field['key'] );
@@ -67,7 +68,7 @@ class IR73_Setup_Repeaters {
 				'restricted_to' => $value['restrict_to'],
 				'fields'        => $fields_names,
 			);
-			$repeater->save( $fields );
+			( new IR73_Repeater_Fields( $value['ID'] ) )->save( $fields );
 		}
 	}
 }
