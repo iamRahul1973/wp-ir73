@@ -99,14 +99,15 @@ class IR73_Helper {
 	 * MODIFY THIS TO CREATE MULTI LEVEL MENUS.
 	 *
 	 * @param string $menu_name Name of the menu to retrieve.
-	 * @return array
+	 * @return bool|array
 	 */
-	public static function prepare_two_level_menu( string $menu_name ): array {
+	public static function prepare_two_level_menu( string $menu_name ) {
 
 		$menu_items = wp_get_nav_menu_items( $menu_name );
 
 		if ( false === $menu_items ) {
-			return false; }
+			return false;
+		}
 
 		$prepared = array();
 
