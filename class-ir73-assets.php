@@ -144,7 +144,7 @@ class IR73_Assets {
 	 * @return void
 	 */
 	public function enqueue() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'load' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'load' ), 99 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_admin_assets' ) );
 	}
 

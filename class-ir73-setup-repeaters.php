@@ -43,7 +43,7 @@ class IR73_Setup_Repeaters {
 			( new IR73_Repeater_Fields( $value['ID'] ) )
 				->set_title( $value['title'] )
 				->set_object( $value['object'] )
-				->restrict( $value['restrict_to'] )
+				->restrict( $value['restrict_to'] ?? null )
 				->assign_fields( $value['fields'] )
 				->do();
 
@@ -65,7 +65,7 @@ class IR73_Setup_Repeaters {
 			$fields = array(
 				'name'          => $value['ID'],
 				'post_type'     => $value['object'],
-				'restricted_to' => $value['restrict_to'],
+				'restricted_to' => $value['restrict_to'] ?? false,
 				'fields'        => $fields_names,
 			);
 			( new IR73_Repeater_Fields( $value['ID'] ) )->save( $fields );
